@@ -10,5 +10,5 @@ app.post("/", (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("listening on port 3000");
+  console.log("listening on the server port 3000");
 });
