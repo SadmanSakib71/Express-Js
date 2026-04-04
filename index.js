@@ -6,7 +6,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-  res.send("this is post for home page");
+  res.send("this is post for my home page");
 });
 
 app.listen(3000, () => {
