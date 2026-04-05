@@ -1,16 +1,16 @@
 const express = require("express");
 const app = express();
-const path = require("path");
-const router = express.Router({ caseSensitive: true });
-const handle = require("./handle");
+const admin = express();
 
-app.use(router);
+app.use("/admin", admin);
 
-app.locals.title = "Manna vai";
+admin.get("/dashboard", (req, res) => {
+  console.log(admin.mountpath);
 
-router.get("/about", handle);
+  res.send("this is get for admin dashboard page");
+});
 
-router.post("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("this is post for my home page");
 });
 
