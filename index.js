@@ -1,14 +1,14 @@
 const express = require("express");
 const app = express();
 
-app.use(express.raw());
+app.use(express.text());
 
 app.get("/", (req, res) => {
   res.send("this is get for home page");
 });
 
 app.post("/", (req, res) => {
-  console.log(req.body.toString());
+  console.log(req.body);
 
   res.send("this is post for my home page");
 });
