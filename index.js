@@ -1,18 +1,20 @@
 const express = require("express");
 const app = express();
 
+app.set("view engine", "ejs");
+
 app
   .route("/sakib/akif")
-  .get("", (req, res) => {
+  .get((req, res) => {
+    res.render("pages/page");
+  })
+  .post((req, res) => {
     res.send("this is post for my home page");
   })
-  .post("", (req, res) => {
+  .put((req, res) => {
     res.send("this is post for my home page");
   })
-  .put("", (req, res) => {
-    res.send("this is post for my home page");
-  })
-  .delete("", (req, res) => {
+  .delete((req, res) => {
     res.send("this is post for my home page");
   });
 
