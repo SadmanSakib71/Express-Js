@@ -4,6 +4,7 @@ const adminRoute = express.Router();
 
 adminRoute.get("/dashboard", (req, res) => {
   console.log(req.originalUrl);
+  console.log(req.url);
 
   res.send("we are in admin route");
 });
