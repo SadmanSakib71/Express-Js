@@ -1,14 +1,15 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const router = express.Router();
 
-app.use(express.static(path.join(__dirname, "public")));
+app.use(router);
 
-app.get("/", (req, res) => {
+router.get("/about", (req, res) => {
   res.send("this is get for home page");
 });
 
-app.post("/", (req, res) => {
+router.post("/", (req, res) => {
   res.send("this is post for my home page");
 });
 
