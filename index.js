@@ -1,16 +1,18 @@
 const express = require("express");
 const app = express();
-const admin = express();
 
-app.use("/admin", admin);
-
-admin.get("/dashboard", (req, res) => {
-  console.log(admin.mountpath);
-
-  res.send("this is get for admin dashboard page");
+app.param("id", (req, res, next, id) => {
+  const user = {
+    userId: id,
+    name: "bangladesh",
+  };
+  req.userDetails = user;
+  next();
 });
 
-app.get("/", (req, res) => {
+app.get("/about/:id", (req, res) => {
+  console.log(req.userDetails);
+
   res.send("this is post for my home page");
 });
 
