@@ -1,29 +1,14 @@
 const express = require("express");
 const app = express();
-const adminRoute = express.Router();
-const cookieParser = require("cookie-parser");
-app.use(express.json());
-app.use(cookieParser());
 
-adminRoute.get("/dashboard", (req, res) => {
-  console.log(req.originalUrl);
-  console.log(req.url);
+app.set("view engine", "ejs");
 
-  res.send("we are in admin route");
-});
-
-app.use("/admin", adminRoute);
-
-app.get("/user/:id", (req, res) => {
+app.get("/about", (req, res) => {
   console.log(req.secure);
 
-  res.send("this is for get method");
-});
-
-app.post("/user", (req, res) => {
-  console.log(req.body);
-
-  res.send("this is for post method");
+  res.render("pages/page", {
+    name: "you are a hero",
+  });
 });
 
 app.listen(3000, () => {
