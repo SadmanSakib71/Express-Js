@@ -1,14 +1,13 @@
 const express = require("express");
 const app = express();
 
-app.set("view engine", "ejs");
-
 app.get("/about", (req, res) => {
-  console.log(req.secure);
+  res.redirect("/test");
+  res.end();
+});
 
-  res.render("pages/page", {
-    name: "you are a hero",
-  });
+app.get("/test", (req, res) => {
+  res.send("test router");
 });
 
 app.listen(3000, () => {
