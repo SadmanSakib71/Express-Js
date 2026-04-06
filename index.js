@@ -15,7 +15,7 @@ adminRoute.get("/dashboard", (req, res) => {
 app.use("/admin", adminRoute);
 
 app.get("/user/:id", (req, res) => {
-  console.log(req.cookies);
+  console.log(req.secure);
 
   res.send("this is for get method");
 });
