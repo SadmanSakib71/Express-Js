@@ -1,11 +1,9 @@
 const express = require("express");
 const app = express();
 const adminRouter = require("./adminRouter");
+const publicRouter = require("./publicRouter");
 
-app.get("/", (req, res) => {
-  res.send("for home router");
-});
-
+app.use("/", publicRouter);
 app.use("/admin", adminRouter);
 
 app.listen(3000, () => {
