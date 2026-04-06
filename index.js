@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const adminRoute = express.Router();
+app.use(express.json());
 
 adminRoute.get("/dashboard", (req, res) => {
   console.log(req.originalUrl);
@@ -12,12 +13,13 @@ adminRoute.get("/dashboard", (req, res) => {
 app.use("/admin", adminRoute);
 
 app.get("/user/:id", (req, res) => {
-  console.log(req.originalUrl);
-  console.log(req.params.id);
-  console.log(req.query.filter);
-  console.log(req.hostname);
-
   res.send("this is for get method");
+});
+
+app.post("/user", (req, res) => {
+  console.log(req.body);
+
+  res.send("this is for post method");
 });
 
 app.listen(3000, () => {
