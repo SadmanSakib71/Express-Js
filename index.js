@@ -13,6 +13,10 @@ app.use("/admin", adminRoute);
 
 app.get("/user/:id", (req, res) => {
   console.log(req.originalUrl);
+  console.log(req.params.id);
+  console.log(req.query.filter);
+  console.log(req.hostname);
+
   res.send("this is for get method");
 });
 
