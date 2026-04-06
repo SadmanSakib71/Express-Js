@@ -1,7 +1,9 @@
 const express = require("express");
 const app = express();
 const adminRoute = express.Router();
+const cookieParser = require("cookie-parser");
 app.use(express.json());
+app.use(cookieParser());
 
 adminRoute.get("/dashboard", (req, res) => {
   console.log(req.originalUrl);
@@ -13,6 +15,8 @@ adminRoute.get("/dashboard", (req, res) => {
 app.use("/admin", adminRoute);
 
 app.get("/user/:id", (req, res) => {
+  console.log(req.cookies);
+
   res.send("this is for get method");
 });
 
