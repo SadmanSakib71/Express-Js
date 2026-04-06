@@ -2,7 +2,9 @@ const express = require("express");
 const app = express();
 
 app.get("/about", (req, res) => {
-  res.redirect("/test");
+  res.set("sakib", "vai");
+  console.log(res.get("sakib"));
+
   res.end();
 });
 
