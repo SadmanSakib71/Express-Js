@@ -6,13 +6,24 @@ const log = (req, res, next) => {
   next();
 };
 
-publicRouter.param("user", (req, res, next, id) => {
-  req.user = id === "1" ? "Admin" : "Anonymous";
-  next();
-});
+publicRouter
+  .route("/user")
+  .all(log)
+  .get((req, res) => {
+    res.send("this is for get");
+  })
+  .post((req, res) => {
+    res.send("this is for post");
+  })
+  .put((req, res) => {
+    res.send("this is for put");
+  })
+  .delete((req, res) => {
+    res.send("this is for delete");
+  });
 
 publicRouter.get("/:user", (req, res) => {
-  res.send(`this is ${req.user}`);
+  res.send("this is for get");
 });
 publicRouter.get("/about", (req, res) => {
   res.send("for home about ");
