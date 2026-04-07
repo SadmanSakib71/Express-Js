@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
-const adminRouter = require("./adminRouter");
-const publicRouter = require("./publicRouter");
+const multer = require("multer");
 
-app.use("/", publicRouter);
-app.use("/admin", adminRouter);
+app.get("/", (req, res) => {
+  res.send("for home router");
+});
 
 app.listen(3000, () => {
   console.log("listening on the server port 3000");
