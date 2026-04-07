@@ -6,25 +6,14 @@ const UPLOADS_FOLDER = "./uploads";
 
 var upload = multer({
   dest: UPLOADS_FOLDER,
+  limits: {
+    fileSize: 1000000,
+  },
 });
 
-app.post(
-  "/",
-  upload.fields([
-    {
-      name: "avatar",
-      maxCount: 1,
-    },
-    {
-      name: "image",
-      maxCount: 2,
-    },
-  ]),
-
-  (req, res) => {
-    res.send("file saved in upload folder");
-  },
-);
+app.post("/", upload.single("avatar"), (req, res) => {
+  res.send("file saved in upload folder");
+});
 
 app.listen(3000, () => {
   console.log("listening on the server port 3000");
