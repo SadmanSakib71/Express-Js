@@ -1,10 +1,31 @@
 const express = require("express");
 const app = express();
 const multer = require("multer");
+const path = require("node:path");
 
 const UPLOADS_FOLDER = "./uploads";
 
+//define the storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, UPLOADS_FOLDER);
+  },
+  filename: (req, file, cb) => {
+    const fileExt = path.extname(file.originalname);
+    const fileName =
+      file.originalname
+        .replace(fileExt, "")
+        .toLowerCase()
+        .split(" ")
+        .join("-") +
+      "-" +
+      Date.now();
+    cb(null, fileName + fileExt);
+  },
+});
+
 var upload = multer({
+  storage: storage,
   dest: UPLOADS_FOLDER,
   limits: {
     fileSize: 1000000,
