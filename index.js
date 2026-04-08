@@ -10,17 +10,34 @@ var upload = multer({
     fileSize: 1000000,
   },
   fileFilter: (req, file, cb) => {
-    if (file.mimetype === "image/jpeg") {
-      cb(null, true);
+    if (file.fieldname === "avatar") {
+      if (file.mimetype === "image/jpeg") {
+        cb(null, true);
+      } else {
+        cb(new Error("only jpeg format allowed"));
+      }
+    } else if (file.fieldname === "pdf") {
+      if (file.mimetype === "application/pdf") {
+        cb(null, true);
+      } else {
+        cb(new Error("only jpeg format allowed"));
+      }
     } else {
-      cb(new Error("only jpeg format allowed"));
+      cb(new Error("there was an unknown error"));
     }
   },
 });
 
-app.post("/", upload.single("avatar"), (req, res) => {
-  res.send("file saved in upload folder");
-});
+app.post(
+  "/",
+  upload.fields([
+    { name: "avatar", maxCount: 1 },
+    { name: "pdf", maxCount: 1 },
+  ]),
+  (req, res) => {
+    res.send("file saved in upload folder");
+  },
+);
 
 // default error handler
 app.use((err, req, res, next) => {
