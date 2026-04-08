@@ -56,6 +56,8 @@ app.post(
     { name: "pdf", maxCount: 1 },
   ]),
   (req, res) => {
+    console.log(req.files);
+
     res.send("file saved in upload folder");
   },
 );
