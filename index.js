@@ -12,6 +12,8 @@ const storage = multer.diskStorage({
   },
   filename: (req, file, cb) => {
     const fileExt = path.extname(file.originalname);
+    console.log(fileExt, "fileExt");
+
     const fileName =
       file.originalname
         .replace(fileExt, "")
@@ -21,6 +23,7 @@ const storage = multer.diskStorage({
       "-" +
       Date.now();
     cb(null, fileName + fileExt);
+    console.log(fileName, "fileName");
   },
 });
 
@@ -56,8 +59,6 @@ app.post(
     { name: "pdf", maxCount: 1 },
   ]),
   (req, res) => {
-    console.log(req.files);
-
     res.send("file saved in upload folder");
   },
 );
