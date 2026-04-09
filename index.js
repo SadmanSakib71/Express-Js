@@ -59,6 +59,11 @@ app.post(
     { name: "pdf", maxCount: 1 },
   ]),
   (req, res) => {
+    //if single file
+    console.log(req.file);
+    //if multiple file
+    console.log(req.files);
+
     res.send("file saved in upload folder");
   },
 );
